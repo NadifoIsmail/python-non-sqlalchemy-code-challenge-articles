@@ -122,9 +122,38 @@ class Magazine:
             return None
         return [article.title for article in self._articles]
      
-    #
+    
     # def contributing_authors(self):
 
-      
 
 
+author1 = Author("John")
+author2 = Author("Brian")
+
+tech_magazine = Magazine("TechTalk", "Technology")
+food_magazine = Magazine("Foodies", "Culinary")
+
+
+article1 = author1.add_article(tech_magazine, "The Rise of AI")
+article2 = author1.add_article(food_magazine, "Fusion Cuisine Secrets")
+article3 = author2.add_article(tech_magazine, "Quantum Computing Basics")
+
+
+print(f"Author {author1.name}'s Articles: {[a.title for a in author1.articles()]}")
+print(f"Author {author2.name}'s Articles: {[a.title for a in author2.articles()]}")
+print(f"Magazines authored by {author1.name}: {[m.name for m in author1.magazines()]}")
+
+print(f"{tech_magazine.name} Contributors: {[a.name for a in tech_magazine.contributors()]}")
+print(f"{food_magazine.name} Article Titles: {food_magazine.article_titles()}")
+
+print(f"Topics covered by {author1.name}: {author1.topic_areas()}")
+
+try:
+    invalid_article = author1.add_article(tech_magazine, "AI") 
+except Exception as e:
+    print(f"Error: {e}")
+
+try:
+    invalid_magazine = Magazine("S", "Tech")  
+except Exception as e:
+    print(f"Error: {e}")
